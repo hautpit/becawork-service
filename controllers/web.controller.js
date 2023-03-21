@@ -2,18 +2,18 @@ const { successResponse } = require("../helpers/methods")
 const urlMetadata = require("url-metadata")
 
 exports.index = async (req, res) => {
-    urlMetadata(
-        "https://genk.vn/mot-mau-o-ssd-noi-tieng-cua-samsung-dang-bi-lam-gia-tran-lan-tinh-vi-den-muc-phan-mem-cua-hang-cung-kho-the-phan-biet-20230320171229053.chn"
-    ).then(async (metadata) => {
-        console.log(JSON.stringify(metadata, "*****", 8))
-    })
-    res.send(
-        successResponse("Hau neeeeeeeeee", {
-            data: "here comes you payload..."
+    const url = req.params?.url
+    if (url) {
+        urlMetadata(url).then(async (metadata) => {
+            console.log(metadata)
+            res.send(
+                successResponse("Success", {
+                    data: metadata
+                })
+            )
         })
-    )
+    }
 }
-
 /**
  *
  * @param req

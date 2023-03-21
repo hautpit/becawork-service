@@ -8,6 +8,6 @@ const { indexValidator } = require("../middlewares/validators/index.validations"
 
 router.get("/", IndexController.index)
 router.post("/", validate(indexValidator), IndexController.indexPost)
-router.get("/webservice/getmetadata", WebController.index)
+router.get("/webservice/getmetadata/:url", WebController.index)
 
 module.exports = router
